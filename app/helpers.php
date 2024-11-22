@@ -181,33 +181,6 @@ function get_languages(){
 }
 
 /**
- * @param string $type
- * @return string
- *
- * @return stripe secret key or test key
- */
-
-function get_stripe_key($type = 'publishable'){
-    $stripe_key = '';
-
-    if ($type == 'publishable'){
-        if (get_option('stripe_test_mode') == 1){
-            $stripe_key = get_option('stripe_test_publishable_key');
-        }else{
-            $stripe_key = get_option('stripe_live_publishable_key');
-        }
-    }elseif ($type == 'secret'){
-        if (get_option('stripe_test_mode') == 1){
-            $stripe_key = get_option('stripe_test_secret_key');
-        }else{
-            $stripe_key = get_option('sk_live_ojldRoMZ3j14I5pwpfCxidvT');
-        }
-    }
-
-    return $stripe_key;
-}
-
-/**
  * @param int $ad_id
  * @param string $status
  */

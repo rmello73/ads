@@ -114,12 +114,12 @@ class PaymentController extends Controller
             \Stripe\Stripe::setApiKey(get_stripe_key('secret'));
             // Create the charge on Stripe's servers - this will charge the user's card
             try {
-                $charge = \Stripe\Charge::create(array(
+                $charge = \Stripe\Charge::create([
                     "amount" => ($payment->amount * 100), // amount in cents, again
                     "currency" => $payment->currency,
                     "source" => $stripeToken,
                     "description" => $payment->ad->title." (".ucfirst($payment->ad->price_plan).") ad posting"
-                ));
+                ]);
 
                 if ($charge->status == 'succeeded'){
                     $payment->status = 'success';
@@ -181,7 +181,7 @@ class PaymentController extends Controller
         // Instead, read raw POST data from the input stream.
         $raw_post_data = file_get_contents('php://input');
         $raw_post_array = explode('&', $raw_post_data);
-        $myPost = array();
+        $myPost = [];
         foreach ($raw_post_array as $keyval) {
             $keyval = explode ('=', $keyval);
             if (count($keyval) == 2)
@@ -210,7 +210,7 @@ class PaymentController extends Controller
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
         curl_setopt($ch, CURLOPT_FORBID_REUSE, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Connection: Close'));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Connection: Close']);
 // In wamp-like environments that do not come bundled with root authority certificates,
 // please download 'cacert.pem' from "http://curl.haxx.se/docs/caextract.html" and set
 // the directory path of the certificate as shown below:
@@ -269,7 +269,7 @@ class PaymentController extends Controller
         // Instead, read raw POST data from the input stream.
         $raw_post_data = file_get_contents('php://input');
         $raw_post_array = explode('&', $raw_post_data);
-        $myPost = array();
+        $myPost = [];
         foreach ($raw_post_array as $keyval) {
             $keyval = explode ('=', $keyval);
             if (count($keyval) == 2)
@@ -298,7 +298,7 @@ class PaymentController extends Controller
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
         curl_setopt($ch, CURLOPT_FORBID_REUSE, 1);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Connection: Close'));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Connection: Close']);
         // In wamp-like environments that do not come bundled with root authority certificates,
         // please download 'cacert.pem' from "http://curl.haxx.se/docs/caextract.html" and set
         // the directory path of the certificate as shown below:

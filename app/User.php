@@ -38,7 +38,7 @@ class User extends Authenticatable
      * @param array $atts
      * @return string
      */
-    public function get_gravatar( $s = 40, $d = 'mm', $r = 'g', $img = false, $atts = array() ) {
+    public function get_gravatar( $s = 40, $d = 'mm', $r = 'g', $img = false, $atts = [] ) {
 
         $email = $this->email;
         $url = 'http://www.gravatar.com/avatar/';
